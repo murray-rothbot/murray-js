@@ -30,11 +30,9 @@ describe("blockchain.getAddressUTXOs", () => {
 
   it("handles unexpected response structure", async () => {
     const address = "bc1qkt5eval60henjz2q5razxklkxjumuf8vyd6usn";
-    mockedAxios.get.mockResolvedValue({ data: {} }); // Simula uma resposta inesperada
+    mockedAxios.get.mockResolvedValue({ data: {} });
 
     const response = await getAddressUTXOs(address);
-
-    // Verifique o comportamento esperado aqui
     expect(response).toEqual({});
   });
 });

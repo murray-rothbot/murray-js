@@ -1,4 +1,4 @@
-[![npm version](https://img.shields.io/npm/v/murray-js.svg?style=flat-square)](https://www.npmjs.org/package/murray-js)
+[![npm version](https://img.shields.io/npm/v/murray-js.svg?style=flat-square)](https://www.npmjs.com/package/murray-js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 # Murray JS
@@ -13,7 +13,7 @@ You can install the package using npm or yarn.
 
 ```bash
 # npm
-$ npm install murray-js --save
+$ npm install murray-js
 
 # yarn
 $ yarn add murray-js

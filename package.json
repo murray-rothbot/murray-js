@@ -2,7 +2,7 @@
   "name": "murray-js",
   "version": "1.0.1",
   "description": "Open APIs to easily integrate your projects with the Bitcoin ecosystem.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start:dev": "nodemon",
     "build": "tsc",

@@ -3,47 +3,113 @@
 
 # Murray JS
 
-NPM package module for Murray Rothbot APIs.
-
----
+Murray JS is a comprehensive NPM package module designed for seamless integration with Murray Rothbot's suite of APIs, including Blockchain, Lightning, and Prices. This powerful library enables developers to quickly incorporate bitcoin data and interactions within their applications.
 
 ## Installation
 
-You can install the package using npm or yarn.
+To get started, install the package using either npm or yarn:
 
 ```bash
 # npm
-$ npm install murray-js
+npm install murray-js
 
 # yarn
-$ yarn add murray-js
+yarn add murray-js
 ```
 
-## How to use?
+## Usage
 
-Example of how to use the package.
+After installation, import `murray-js` into your project to access the various APIs.
+
+### Blockchain API
 
 ```js
 import Murray from "murray-js";
 
-const murray = new Murray();
+const blockchainExample = async () => {
+  const murray = new Murray();
 
-// blockchain api example
-const response = await murray.blockchain.getFees();
-console.log(response);
+  try {
+    const fees = await murray.blockchain.getFees();
+    console.log(fees);
 
-// lightning api example
-const response = await murray.lightning.getStatistics();
-console.log(response);
+    const block = await murray.blockchain.getBlock({ height: 500000 });
+    console.log(block);
 
-// prices api example
-const response = await murray.prices.getTickers({ symbol: "BTCUSD" });
-console.log(response);
+    const blockTime = await murray.blockchain.getBlock2time({ height: 500000 });
+    console.log(blockTime);
+
+    const addressDetails = await murray.blockchain.getAddressDetails({
+      address: "1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX",
+    });
+    console.log(addressDetails);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+blockchainExample();
+```
+
+### Lightning API
+
+```js
+import Murray from "murray-js";
+
+const lightningExample = async () => {
+  const murray = new Murray();
+
+  try {
+    const nodeDetails = await murray.lightning.getNodeDetails({
+      publicKey:
+        "03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f",
+    });
+    console.log(nodeDetails);
+
+    const statistics = await murray.lightning.getStatistics();
+    console.log(statistics);
+
+    const topNodes = await murray.lightning.getTopNodes();
+    console.log(topNodes);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+lightningExample();
+```
+
+### Prices API
+
+```js
+import Murray from "murray-js";
+
+const pricesExample = async () => {
+  const murray = new Murray();
+
+  try {
+    const ticker = await murray.prices.getTicker({ symbol: "BTCUSD" });
+    console.log(ticker);
+
+    const tickers = await murray.prices.getTickers({ symbol: "BTCUSD" });
+    console.log(tickers);
+
+    const currencyConversion = await murray.prices.convertCurrency({
+      currency: "USD",
+      value: 100,
+    });
+    console.log(currencyConversion);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+pricesExample();
 ```
 
 ## Custom Endpoints
 
-You can also use your custom endpoint for the blockchain, prices, and lightning.
+Customize endpoints for each API to suit your specific needs:
 
 ```js
 import Murray from "murray-js";
@@ -60,24 +126,24 @@ console.log(response);
 
 ## Examples
 
+Find more examples in the repository to guide your implementation:
+
 - [Blockchain](./examples/blockchain.ts)
 - [Lightning](./examples/lightning.ts)
 - [Prices](./examples/prices.ts)
 
 ## Self Hosted APIs
 
-You can also use your self-hosted APIs for the blockchain, lightning and prices.
+Leverage your self-hosted APIs for enhanced control and customization:
 
 - [Service Blockchain](https://github.com/Murray-Rothbot/service-blockchain)
 - [Service Lightning](https://github.com/Murray-Rothbot/service-lightning)
 - [Service Prices](https://github.com/Murray-Rothbot/service-prices)
 
----
-
 ## Contributing
 
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
+We welcome contributions! For significant changes or enhancements, please open an issue first to discuss your ideas.
 
 ## License
 
-This project is licensed under the terms of the [MIT](./LICENSE).
+Murray JS is open-sourced software licensed under the [MIT license](./LICENSE).

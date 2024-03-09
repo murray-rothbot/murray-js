@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "Open APIs to easily integrate your projects with the Bitcoin ecosystem.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start:dev": "nodemon",
     "build": "tsc",

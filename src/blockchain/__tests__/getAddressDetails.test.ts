@@ -10,7 +10,7 @@ describe("blockchain.getAddressDetails", () => {
     const address = "bc1qkt5eval60henjz2q5razxklkxjumuf8vyd6usn";
     mockedAxios.get.mockResolvedValue({ data: fakeAddressDetailsResponse });
 
-    const response = await getAddressDetails(address);
+    const response = await getAddressDetails({ address });
 
     expect(response).toEqual(fakeAddressDetailsResponse);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -26,14 +26,14 @@ describe("blockchain.getAddressDetails", () => {
     const address = "bc1qkt5eval60henjz2q5razxklkxjumuf8vyd6usn";
     mockedAxios.get.mockRejectedValue(new Error(errorMessage));
 
-    await expect(getAddressDetails(address)).rejects.toThrow(errorMessage);
+    await expect(getAddressDetails({ address })).rejects.toThrow(errorMessage);
   });
 
   it("handles unexpected response structure", async () => {
     const address = "bc1qkt5eval60henjz2q5razxklkxjumuf8vyd6usn";
     mockedAxios.get.mockResolvedValue({ data: {} });
 
-    const response = await getAddressDetails(address);
+    const response = await getAddressDetails({ address });
 
     expect(response).toEqual({});
   });

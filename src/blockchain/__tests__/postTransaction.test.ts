@@ -10,7 +10,7 @@ describe("blockchain.postTransaction", () => {
     mockedAxios.post.mockResolvedValue(fakeResponse);
 
     const txHex = "your-transaction-data-here";
-    const response = await postTransaction(txHex);
+    const response = await postTransaction({ txHex });
 
     expect(response).toEqual(fakeResponse.data);
     expect(mockedAxios.post).toHaveBeenCalledWith(
@@ -26,9 +26,7 @@ describe("blockchain.postTransaction", () => {
     const errorMessage = "Network Error";
     mockedAxios.post.mockRejectedValue(new Error(errorMessage));
 
-    const transactionData = "invalid-transaction-data";
-    await expect(postTransaction(transactionData)).rejects.toThrow(
-      errorMessage
-    );
+    const txHex = "invalid-transaction-data";
+    await expect(postTransaction({ txHex })).rejects.toThrow(errorMessage);
   });
 });

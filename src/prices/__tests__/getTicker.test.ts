@@ -10,7 +10,7 @@ describe("prices.getTicker", () => {
     mockedAxios.get.mockResolvedValue({ data: fakeTickerResponse });
 
     const symbol = "BTCUSD";
-    const response = await getTicker(symbol);
+    const response = await getTicker({ symbol });
 
     expect(response).toEqual(fakeTickerResponse.data);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -26,6 +26,6 @@ describe("prices.getTicker", () => {
     const errorMessage = "Network Error";
     mockedAxios.get.mockRejectedValue(new Error(errorMessage));
 
-    await expect(getTicker("BTCUSD")).rejects.toThrow(errorMessage);
+    await expect(getTicker({ symbol: "BTCUSD" })).rejects.toThrow(errorMessage);
   });
 });

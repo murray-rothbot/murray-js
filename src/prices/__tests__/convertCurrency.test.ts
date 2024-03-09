@@ -9,9 +9,9 @@ describe("prices.convertCurrency", () => {
   it("fetches successfully data from an API for currency conversion", async () => {
     mockedAxios.get.mockResolvedValue({ data: fakeConvertCurrencyResponse });
 
-    const currency = "btc";
+    const currency = "BTC";
     const value = 1;
-    const response = await convertCurrency(currency, value);
+    const response = await convertCurrency({ currency, value });
 
     expect(response).toEqual(fakeConvertCurrencyResponse.data);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -27,6 +27,8 @@ describe("prices.convertCurrency", () => {
     const errorMessage = "Network Error";
     mockedAxios.get.mockRejectedValue(new Error(errorMessage));
 
-    await expect(convertCurrency("btc", 1)).rejects.toThrow(errorMessage);
+    await expect(
+      convertCurrency({ currency: "BTC", value: 1 })
+    ).rejects.toThrow(errorMessage);
   });
 });

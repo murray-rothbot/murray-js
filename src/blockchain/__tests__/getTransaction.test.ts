@@ -11,7 +11,7 @@ describe("blockchain.getTransaction", () => {
 
     const txid =
       "16a354b9bc57cd4387ec00d3a7897110d4b319a85a754258369956179a012eda";
-    const response = await getTransaction(txid);
+    const response = await getTransaction({ txid });
 
     expect(response).toEqual(fakeTransactionResponse);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -27,6 +27,6 @@ describe("blockchain.getTransaction", () => {
     mockedAxios.get.mockRejectedValue(new Error(errorMessage));
 
     const txid = "someinvalidtxid";
-    await expect(getTransaction(txid)).rejects.toThrow(errorMessage);
+    await expect(getTransaction({ txid })).rejects.toThrow(errorMessage);
   });
 });

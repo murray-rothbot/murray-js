@@ -11,7 +11,7 @@ describe("lightning.getNodeDetails", () => {
       "03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f";
     mockedAxios.get.mockResolvedValue({ data: fakeLightningResponse });
 
-    const response = await getNodeDetails(publicKey);
+    const response = await getNodeDetails({ publicKey });
 
     expect(response).toEqual(fakeLightningResponse);
     expect(mockedAxios.get).toHaveBeenCalledWith(
@@ -28,7 +28,7 @@ describe("lightning.getNodeDetails", () => {
       "03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f";
     mockedAxios.get.mockRejectedValue(new Error(errorMessage));
 
-    await expect(getNodeDetails(publicKey)).rejects.toThrow(errorMessage);
+    await expect(getNodeDetails({ publicKey })).rejects.toThrow(errorMessage);
   });
 
   it("handles unexpected response structure", async () => {
@@ -36,7 +36,7 @@ describe("lightning.getNodeDetails", () => {
       "03864ef025fde8fb587d989186ce6a4a186895ee44a926bfc370e2c366597a3f8f";
     mockedAxios.get.mockResolvedValue({ data: {} });
 
-    const response = await getNodeDetails(publicKey);
+    const response = await getNodeDetails({ publicKey });
 
     expect(response).toEqual({});
   });

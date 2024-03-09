@@ -28,7 +28,10 @@ export const getBlock = async ({ hash, height }: getBlockParams = {}) => {
   }
 };
 
-export const getBlock2time = async ({ hash, height }: getBlock2timeParams) => {
+export const getBlock2time = async ({
+  hash,
+  height,
+}: getBlock2timeParams = {}) => {
   try {
     const response = await axios.get(`${baseURL}/block2time`, {
       params: { hash, height },

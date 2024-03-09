@@ -1,8 +1,21 @@
 import axios from "axios";
+import {
+  convertCurrencyParams,
+  getTickerParams,
+  getTickersParams,
+  setBaseURLParams,
+} from "./types";
 
-const baseURL = "http://prices.murrayrothbot.com";
+let baseURL = "http://prices.murrayrothbot.com";
 
-export const convertCurrency = async (currency: string, value: number) => {
+export const setBaseURL = ({ url }: setBaseURLParams) => {
+  baseURL = url;
+};
+
+export const convertCurrency = async ({
+  currency,
+  value,
+}: convertCurrencyParams) => {
   try {
     const response = await axios.get(`${baseURL}/convert`, {
       params: { currency, value },
@@ -14,7 +27,7 @@ export const convertCurrency = async (currency: string, value: number) => {
   }
 };
 
-export const getTicker = async (symbol: string) => {
+export const getTicker = async ({ symbol }: getTickerParams) => {
   try {
     const response = await axios.get(`${baseURL}/ticker`, {
       params: { symbol },
@@ -26,7 +39,7 @@ export const getTicker = async (symbol: string) => {
   }
 };
 
-export const getTickers = async (symbol: string) => {
+export const getTickers = async ({ symbol }: getTickersParams) => {
   try {
     const response = await axios.get(
       `http://prices.murrayrothbot.com/tickers`,
@@ -42,6 +55,7 @@ export const getTickers = async (symbol: string) => {
 };
 
 export default {
+  setBaseURL,
   convertCurrency,
   getTicker,
   getTickers,

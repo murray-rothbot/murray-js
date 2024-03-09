@@ -1,13 +1,16 @@
 {
-  "name": "murray",
+  "name": "murray-js",
   "version": "1.0.0",
-  "description": "",
+  "description": "Open APIs to easily integrate your projects with the Bitcoin ecosystem.",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon",
     "build": "tsc",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "examples-blockchain": "ts-node examples/blockchain.ts",
+    "examples-lightning": "ts-node examples/lightning.ts",
+    "examples-prices": "ts-node examples/prices.ts"
   },
   "keywords": [],
   "author": "",

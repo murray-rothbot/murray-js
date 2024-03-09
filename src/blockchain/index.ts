@@ -1,11 +1,22 @@
 import axios from "axios";
+import {
+  getBlockParams,
+  getBlock2timeParams,
+  getAddressDetailsParams,
+  getAddressTransactionsParams,
+  getAddressUTXOsParams,
+  getTransactionParams,
+  postTransactionParams,
+  setBaseURLParams,
+} from "./types";
 
-const baseURL = "http://blockchain.murrayrothbot.com";
+let baseURL = "http://blockchain.murrayrothbot.com";
 
-export const getBlock = async ({
-  hash,
-  height,
-}: { hash?: string; height?: number } = {}) => {
+export const setBaseURL = ({ url }: setBaseURLParams) => {
+  baseURL = url;
+};
+
+export const getBlock = async ({ hash, height }: getBlockParams = {}) => {
   try {
     const response = await axios.get(`${baseURL}/block`, {
       params: { hash, height },
@@ -17,10 +28,7 @@ export const getBlock = async ({
   }
 };
 
-export const getBlock2time = async ({
-  hash,
-  height,
-}: { hash?: string; height?: number } = {}) => {
+export const getBlock2time = async ({ hash, height }: getBlock2timeParams) => {
   try {
     const response = await axios.get(`${baseURL}/block2time`, {
       params: { hash, height },
@@ -43,7 +51,9 @@ export const getFees = async () => {
   }
 };
 
-export const getAddressDetails = async (address: string) => {
+export const getAddressDetails = async ({
+  address,
+}: getAddressDetailsParams) => {
   try {
     const response = await axios.get(`${baseURL}/address/${address}`, {
       headers: { accept: "application/json" },
@@ -54,7 +64,9 @@ export const getAddressDetails = async (address: string) => {
   }
 };
 
-export const getAddressTransactions = async (address: string) => {
+export const getAddressTransactions = async ({
+  address,
+}: getAddressTransactionsParams) => {
   try {
     const response = await axios.get(`${baseURL}/address/${address}/txs`, {
       headers: { accept: "application/json" },
@@ -67,7 +79,7 @@ export const getAddressTransactions = async (address: string) => {
   }
 };
 
-export const getAddressUTXOs = async (address: string) => {
+export const getAddressUTXOs = async ({ address }: getAddressUTXOsParams) => {
   try {
     const response = await axios.get(`${baseURL}/address/${address}/txs/utxo`, {
       headers: { accept: "application/json" },
@@ -111,7 +123,7 @@ export const getMempool = async () => {
   }
 };
 
-export const getTransaction = async (txid: string) => {
+export const getTransaction = async ({ txid }: getTransactionParams) => {
   try {
     const response = await axios.get(`${baseURL}/tx/${txid}`, {
       headers: { accept: "application/json" },
@@ -122,7 +134,7 @@ export const getTransaction = async (txid: string) => {
   }
 };
 
-export const postTransaction = async (txHex: string) => {
+export const postTransaction = async ({ txHex }: postTransactionParams) => {
   try {
     const response = await axios.post(`${baseURL}/tx`, txHex, {
       headers: { accept: "application/json" },
@@ -134,6 +146,7 @@ export const postTransaction = async (txHex: string) => {
 };
 
 export default {
+  setBaseURL,
   getBlock,
   getBlock2time,
   getFees,

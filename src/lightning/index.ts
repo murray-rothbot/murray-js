@@ -1,8 +1,13 @@
 import axios from "axios";
+import { getNodeDetailsParams, setBaseURLParams } from "./types";
 
-const baseURL = "http://lightning.murrayrothbot.com";
+let baseURL = "http://lightning.murrayrothbot.com";
 
-export const getNodeDetails = async (publicKey: string) => {
+export const setBaseURL = ({ url }: setBaseURLParams) => {
+  baseURL = url;
+};
+
+export const getNodeDetails = async ({ publicKey }: getNodeDetailsParams) => {
   try {
     const response = await axios.get(`${baseURL}/node/${publicKey}`, {
       headers: { accept: "application/json" },
@@ -47,6 +52,7 @@ export const getHealth = async () => {
 };
 
 export default {
+  setBaseURL,
   getStatistics,
   getTopNodes,
   getNodeDetails,

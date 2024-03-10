@@ -1,6 +1,6 @@
 {
   "name": "murray-js",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Open APIs to easily integrate your projects with the Bitcoin ecosystem.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

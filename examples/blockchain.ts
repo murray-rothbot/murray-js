@@ -4,7 +4,7 @@ const BlockchainAPIEndpoints = async () => {
   const murray = new Murray();
 
   try {
-    const response = await murray.blockchain.getFees();
+    const response = await murray.blockchain.getFeesRecommended();
     console.log(response);
   } catch (error) {
     console.error(error);

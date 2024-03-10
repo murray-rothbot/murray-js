@@ -45,7 +45,7 @@ export const getBlock2time = async ({
 
 export const getFeesRecommended = async () => {
   try {
-    const response = await axios.get(`${baseURL}/fees-recommended`, {
+    const response = await axios.get(`${baseURL}/fees/recommended`, {
       headers: { accept: "application/json" },
     });
     return response.data;

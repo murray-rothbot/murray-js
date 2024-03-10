@@ -50,7 +50,18 @@ export const getFeesRecommended = async () => {
     });
     return response.data;
   } catch (error) {
-    throw new Error(`Failed to fetch fees: ${error}`);
+    throw new Error(`Failed to fetch fees recommended: ${error}`);
+  }
+};
+
+export const getFeesMempoolBlocks = async () => {
+  try {
+    const response = await axios.get(`${baseURL}/fees/mempool-blocks`, {
+      headers: { accept: "application/json" },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(`Failed to fetch fees mempool blocks: ${error}`);
   }
 };
 

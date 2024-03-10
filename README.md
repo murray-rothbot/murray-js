@@ -30,7 +30,7 @@ const blockchainExample = async () => {
   const murray = new Murray();
 
   try {
-    const fees = await murray.blockchain.getFees();
+    const fees = await murray.blockchain.getFeesRecommended();
     console.log(fees);
 
     const block = await murray.blockchain.getBlock({ height: 500000 });
